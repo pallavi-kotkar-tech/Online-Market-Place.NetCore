@@ -1,0 +1,14 @@
+@using React.AspNet
+@using React.RenderFunctions
+@using React.Router
+
+@{
+	Layout = "_Layout";
+	var helmetFunctions = new ReactHelmetFunctions();
+
+	var chainedFunctions = new ChainedRenderFunctions(helmetFunctions);
+}
+@Html.ReactRouter("Components.IndexComponent", new {}, renderFunctions: chainedFunctions)
+@{
+	ViewBag.HelmetTitle = helmetFunctions.RenderedHelmet?.GetValueOrDefault("title");
+}
